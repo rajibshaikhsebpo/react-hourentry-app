@@ -14,22 +14,20 @@ function App() {
   };
 
   const handleLogin = async (googleData) => {
-    console.log(googleData);
-    
-    // const res = await fetch("/api/google-login", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     token: googleData.tokenId,
-    //   }),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
+    const res = await fetch("/api/google-login", {
+      method: "POST",
+      body: JSON.stringify({
+        token: googleData.tokenId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
      
 
-    // const data = await res.json();
-    setLoginData(googleData["profileObj"]);
-    localStorage.setItem("loginData", JSON.stringify(googleData["profileObj"]));
+    const data = await res.json();
+    setLoginData(data);
+    localStorage.setItem("loginData", JSON.stringify(data));
   };
   const handleLogout = () => {
     localStorage.removeItem("loginData");
